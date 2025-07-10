@@ -1,0 +1,27 @@
+@import "@/styles/common.module.scss";
+
+.header{
+    min-width: 1200px;
+    max-width: 1800px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: auto;
+    padding: 0px 10px;
+
+    &-name{
+        font-size: 18px;
+        color: $color-blue;
+        font-weight: bold;
+        width: 150px;
+    }
+
+    &-tabs{
+        width: calc(100% - 550px);
+    }
+
+    &-wallet{
+        width: 400px;
+    }
+}

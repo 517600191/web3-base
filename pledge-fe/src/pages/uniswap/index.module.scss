@@ -1,0 +1,30 @@
+@import "@/styles/common.module.scss";
+
+.marketAll{
+    min-width: 1200px;
+    margin: auto;
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+
+    &-title{
+        font-size: 30px;
+        font-weight: bold;
+        color: #0284c7;
+        padding: 20px 0px;
+        text-align: center;
+    }
+
+    &-type{
+        display: flex;
+
+        &-2{
+            width: 120px;
+        }
+    }
+
+    &-table{
+        width: 100%;
+        margin-top: 20px;
+    }
+}

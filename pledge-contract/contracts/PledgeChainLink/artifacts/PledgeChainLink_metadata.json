@@ -1,0 +1,509 @@
+{
+	"compiler": {
+		"version": "0.8.26+commit.8a97fa7a"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "InvalidInitialization",
+				"type": "error"
+			},
+			{
+				"inputs": [],
+				"name": "NotInitializing",
+				"type": "error"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint64",
+						"name": "version",
+						"type": "uint64"
+					}
+				],
+				"name": "Initialized",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "int256",
+						"name": "data1",
+						"type": "int256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint8",
+						"name": "data2",
+						"type": "uint8"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "data3",
+						"type": "uint256"
+					}
+				],
+				"name": "LogMessage",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "assetsMap",
+				"outputs": [
+					{
+						"internalType": "contract AggregatorV3Interface",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "asset",
+						"type": "address"
+					}
+				],
+				"name": "getAssetsAggregator",
+				"outputs": [
+					{
+						"internalType": "contract AggregatorV3Interface",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "tokenRadio",
+						"type": "string"
+					}
+				],
+				"name": "getChainlinkDataFeedLatestAnswer",
+				"outputs": [
+					{
+						"internalType": "int256",
+						"name": "",
+						"type": "int256"
+					},
+					{
+						"internalType": "uint8",
+						"name": "",
+						"type": "uint8"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "asset",
+						"type": "address"
+					}
+				],
+				"name": "getPrice",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address[]",
+						"name": "assets",
+						"type": "address[]"
+					}
+				],
+				"name": "getPrices",
+				"outputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "",
+						"type": "uint256[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "underlying",
+						"type": "address"
+					}
+				],
+				"name": "getUnderlyingAggregator",
+				"outputs": [
+					{
+						"internalType": "contract AggregatorV3Interface",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "underlying",
+						"type": "address"
+					}
+				],
+				"name": "getUnderlyingPrice",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "initialize",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "asset",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "aggergator",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_decimals",
+						"type": "uint256"
+					}
+				],
+				"name": "setAssetsAggregator",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "newDecimals",
+						"type": "uint256"
+					}
+				],
+				"name": "setDecimals",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "asset",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "price",
+						"type": "uint256"
+					}
+				],
+				"name": "setPrice",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "tokenRadio",
+						"type": "string"
+					},
+					{
+						"internalType": "address",
+						"name": "_dataFeed",
+						"type": "address"
+					}
+				],
+				"name": "setPriceETHFeed",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address[]",
+						"name": "assets",
+						"type": "address[]"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "prices",
+						"type": "uint256[]"
+					}
+				],
+				"name": "setPrices",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "underlying",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "aggergator",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_decimals",
+						"type": "uint256"
+					}
+				],
+				"name": "setUnderlyingAggregator",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"errors": {
+				"InvalidInitialization()": [
+					{
+						"details": "The contract is already initialized."
+					}
+				],
+				"NotInitializing()": [
+					{
+						"details": "The contract is not initializing."
+					}
+				]
+			},
+			"events": {
+				"Initialized(uint64)": {
+					"details": "Triggered when the contract has been initialized or reinitialized."
+				}
+			},
+			"kind": "dev",
+			"methods": {
+				"getAssetsAggregator(address)": {
+					"details": "该函数用于根据资产地址获取资产的 Chainlink 价格聚合器地址和小数位数。",
+					"params": {
+						"asset": "资产地址，用于获取对应资产的价格聚合器和小数位数。"
+					},
+					"returns": {
+						"_0": "address 资产的价格聚合器地址。",
+						"_1": "uint256 资产的小数位数。"
+					}
+				},
+				"getPrice(address)": {
+					"details": "该函数用于获取单个资产的价格。",
+					"params": {
+						"asset": "资产地址，用于获取对应资产的价格。"
+					},
+					"returns": {
+						"_0": "uint 资产价格，以 1e8 为单位，若未设置或合约暂停则返回 0。"
+					}
+				},
+				"getPrices(address[])": {
+					"details": "该函数用于批量获取资产价格。",
+					"params": {
+						"assets": "资产 ID 数组，用于获取对应资产的价格。"
+					},
+					"returns": {
+						"_0": "uint[] 资产价格数组，与输入的资产 ID 数组一一对应，价格以 1e8 为单位，若未设置或合约暂停则返回 0。"
+					}
+				},
+				"getUnderlyingAggregator(address)": {
+					"details": "该函数用于根据资产 ID 获取资产的 Chainlink 价格聚合器地址和小数位数。",
+					"params": {
+						"underlying": "资产 ID，用于获取对应资产的价格聚合器和小数位���。"
+					},
+					"returns": {
+						"_0": "address 资产的价格聚合器地址。",
+						"_1": "uint256 资产的小数位数。"
+					}
+				},
+				"getUnderlyingPrice(address)": {
+					"details": "该函数用于根据资产 ID 获取资产价格，优先从 Chainlink 预言机获取，若未设置则返回手动设置的价格。",
+					"params": {
+						"underlying": "资产 ID，用于获取对应资产的价格。"
+					},
+					"returns": {
+						"_0": "uint 资产价格，以 1e8 为单位，若未设置或合约暂停则返回 0。"
+					}
+				},
+				"setAssetsAggregator(address,address,uint256)": {
+					"details": "该函数用于设置资产的 Chainlink 价格聚合器地址和小数位数，需要有效的多签名调用。",
+					"params": {
+						"_decimals": "资产的小数位数，用于价格计算。",
+						"aggergator": "价格聚合器地址，用于获取对应资产的实时价格。",
+						"asset": "资产地址，用于设置对应资产的价格聚合器和小数位数。"
+					}
+				},
+				"setPrice(address,uint256)": {
+					"details": "该函数用于手动设置单个资产的价格，需要有效的多签名调用。",
+					"params": {
+						"asset": "资产地址，用于设置对应资产的价格。",
+						"price": "资产价格，用于更新对应资产的价格。"
+					}
+				},
+				"setPrices(address[],uint256[])": {
+					"details": "该函数用于批量更新资产价格，需要有效的多签名调用。",
+					"params": {
+						"assets": "资产 ID 数组，与价格数组一一对应。",
+						"prices": "资产价格数组，与资产 ID 数组一一对应。"
+					}
+				},
+				"setUnderlyingAggregator(address,address,uint256)": {
+					"details": "该函数用于根据资产 ID 设置资产的 Chainlink 价格聚合器地址和小数位数，需要有效的多签名调用。",
+					"params": {
+						"_decimals": "资产的小数位数，用于价格计算。",
+						"aggergator": "价格聚合器地址，用于获取对应资产的实时价格。",
+						"underlying": "资产 ID，用于设置对应资产的价格聚合器和小数位数。"
+					}
+				}
+			},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"getAssetsAggregator(address)": {
+					"notice": "根据资产地址获取资产的价格聚合器和小数位数"
+				},
+				"getPrice(address)": {
+					"notice": "获取单个资产的价格"
+				},
+				"getPrices(address[])": {
+					"notice": "批量获取资产价格"
+				},
+				"getUnderlyingAggregator(address)": {
+					"notice": "根据资产 ID 获取资产的价格聚合器和小数位数"
+				},
+				"getUnderlyingPrice(address)": {
+					"notice": "根据资产 ID 获取资产价格"
+				},
+				"setAssetsAggregator(address,address,uint256)": {
+					"notice": "设置资产的价格聚合器和小数位数"
+				},
+				"setPrice(address,uint256)": {
+					"notice": "设置单个资产的价格"
+				},
+				"setPrices(address[],uint256[])": {
+					"notice": "批量设置资产价格"
+				},
+				"setUnderlyingAggregator(address,address,uint256)": {
+					"notice": "根据资产 ID 设置资产的价格聚合器和小数位数"
+				}
+			},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/PledgeChainLink/PledgeChainLink.sol": "PledgeChainLink"
+		},
+		"evmVersion": "cancun",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"@chainlink/contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol": {
+			"keccak256": "0x257a8d28fa83d3d942547c8e129ef465e4b5f3f31171e7be4739a4c98da6b4f0",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://6d39e11b1dc7b9b8ccdabbc9be442ab7cda4a81c748f57e316dcb1bcb4a28bf9",
+				"dweb:/ipfs/QmaG6vz6W6iEUBsbHSBob5mdcitYxWjoygxREHpsJHfWrS"
+			]
+		},
+		"@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol": {
+			"keccak256": "0xdb4d24ee2c087c391d587cd17adfe5b3f9d93b3110b1388c2ab6c7c0ad1dcd05",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://ab7b6d5b9e2b88176312967fe0f0e78f3d9a1422fa5e4b64e2440c35869b5d08",
+				"dweb:/ipfs/QmXKYWWyzcLg1B2k7Sb1qkEXgLCYfXecR9wYW5obRzWP1Q"
+			]
+		},
+		"contracts/PledgeChainLink/PledgeChainLink.sol": {
+			"keccak256": "0x58218ed14da82fef96f055f232e473c9db4db7ba030f46180968eafda9092531",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://0ca922ced1a210945671b9344692561e17bca09203c82f8e16201e047a96ba30",
+				"dweb:/ipfs/QmZKzgt3oyn3qaDHDMYSngEChcNMQDjd4FwUpf1r2xVpNq"
+			]
+		},
+		"hardhat/console.sol": {
+			"keccak256": "0xf2560b5386574153057104d19a9e68a32ee912cf23c0c8df1fe9a0607f42d543",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://a63166e036b040826baa513772451a79925daa304b38749100efb089ac07cdc2",
+				"dweb:/ipfs/QmUtMTxUFKU6a5oFXsEJnTPvb3QPb7GDDmSv5yZ1jFHDwR"
+			]
+		}
+	},
+	"version": 1
+}

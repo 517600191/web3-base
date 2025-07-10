@@ -1,0 +1,15 @@
+{
+    "name": "NFTTDAO1",
+    "description": "This is a unique NFT created by me.",
+    "image": "https://qcloud.dpfile.com/pc/bY0KHturZh_7sd0Cle2eqGN2ajzMkSSWdzxH6AWUw2qdxBVf06W34QcwP5N5Ww6B.jpg",
+    "attributes": [
+        {
+            "trait_type": "Color",
+            "value": "Blue"
+        },
+        {
+            "trait_type": "Rarity",
+            "value": "Common"
+        }
+    ]
+}
