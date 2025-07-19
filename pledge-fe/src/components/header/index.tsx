@@ -24,6 +24,8 @@ export default function Header(props: any) {
     6: "/nft",
     7: "/uniswap",
     8: "/dex2",
+    9: "/NFTMarket2",
+    10: "/MintNFT",
   });
 
   // 预取所有路由
@@ -54,6 +56,8 @@ export default function Header(props: any) {
           <Tab label="NFT" value={6} />
           <Tab label="UNISWAP" value={7} />
           <Tab label="Dex2" value={8} />
+          <Tab label="NFTMARKET2" value={9} />
+          <Tab label="MintNFT" value={10} />
         </Tabs>
       </div>
       <div className={styles["header-wallet"]}>
