@@ -1,7 +1,7 @@
 {
-    "name": "NFTTDAO3",
-    "description": "This is a unique NFT created by me.",
-    "image": "https://qcloud.dpfile.com/pc/bY0KHturZh_7sd0Cle2eqGN2ajzMkSSWdzxH6AWUw2qdxBVf06W34QcwP5N5Ww6B.jpg",
+    "name": "NFTTDAO4",
+    "description": "This is a unique NFT created for the NFTTDAO4 project.",
+    "image": "https://ipfs.io/ipfs/bafybeid6tgkruy2bvhlj4ihw4iprxp2ywslygzoetma4u5uuyjhumqlbf4",
     "attributes": [
         {
             "trait_type": "Color",

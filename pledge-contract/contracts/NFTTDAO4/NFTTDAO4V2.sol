@@ -5,14 +5,16 @@ import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 // import "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/token/ERC721/extensions/ERC721EnumerableUpgradeable.sol";
+import "@openzeppelin/contracts-upgradeable/token/ERC721/extensions/ERC721URIStorageUpgradeable.sol";
 import "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol";
-import "./NFTTDAO4ERC721URIStorage.sol";
+// import "./NFTTDAO4ERC721URIStorage.sol";
 
 // 管理地址权限的合约
 contract NFTTDAO4V2 is
     Initializable,
     OwnableUpgradeable,
     ERC721EnumerableUpgradeable,
+    ERC721URIStorageUpgradeable,
     IERC721Receiver
 {
     // 定义订单状态枚举
@@ -32,7 +34,7 @@ contract NFTTDAO4V2 is
     }
 
     uint256 private _tokenIdCounter; // NFT id 自加
-    NFTTDAO4ERC721URIStorage private _uriStorage;
+    // NFTTDAO4ERC721URIStorage private _uriStorage;
     uint256 private _NFTOrderInfoId; // 订单 id 自加
     mapping(uint256 => NFTOrderInfo) public NFTOrderInfoMap; //钱包映射
     uint256[] public orderInfoIds; // 新增数组，记录所有有效的 _NFTOrderInfoId
@@ -49,8 +51,37 @@ contract NFTTDAO4V2 is
         __Ownable_init(_owner);
         __ERC721_init(_name, _symbol);
         __ERC721Enumerable_init();
+        __ERC721URIStorage_init();
         _tokenIdCounter = 1;
-        _uriStorage = new NFTTDAO4ERC721URIStorage();
+        // _uriStorage = new NFTTDAO4ERC721URIStorage();
+        // _uriStorage.initialize(_name, _symbol); 
+    }
+
+    function _increaseBalance(address account, uint128 amount) internal override(ERC721EnumerableUpgradeable, ERC721Upgradeable) {
+        // 调用基类的 _increaseBalance 函数
+        super._increaseBalance(account, amount);
+    }
+
+    function tokenURI(uint256 tokenId) public view override(ERC721URIStorageUpgradeable, ERC721Upgradeable) returns (string memory) {
+        return super.tokenURI(tokenId);
+    }
+
+    function _update(
+        address to,
+        uint256 tokenId,
+        address auth
+    ) internal override(ERC721EnumerableUpgradeable, ERC721Upgradeable) returns (address) {
+        // 调用基类的 _update 函数
+        return super._update(to, tokenId, auth);
+    }
+
+    function supportsInterface(bytes4 interfaceId) public view override(ERC721EnumerableUpgradeable, ERC721URIStorageUpgradeable) returns (bool) {
+        return 
+            ERC721EnumerableUpgradeable.supportsInterface(interfaceId) ||
+            ERC721URIStorageUpgradeable.supportsInterface(interfaceId) ||
+            // 如果 OwnableUpgradeable 也实现了 supportsInterface 可以添加
+            // OwnableUpgradeable.supportsInterface(interfaceId) ||
+            super.supportsInterface(interfaceId);
     }
 
     // 新的初始化函数，用于升级时初始化新状态
@@ -62,7 +93,8 @@ contract NFTTDAO4V2 is
     // mint
     function safeMint(address to, string memory _tokenURI) public onlyOwner {
         _safeMint(to, _tokenIdCounter);
-        _uriStorage.setTokenURI(_tokenIdCounter, _tokenURI);
+        // _uriStorage.setTokenURI(_tokenIdCounter, _tokenURI);
+        _setTokenURI(_tokenIdCounter, _tokenURI);
         _tokenIdCounter++;
         emit LogMessage(to, _tokenIdCounter);
     }
@@ -75,7 +107,8 @@ contract NFTTDAO4V2 is
     ) public onlyOwner {
         for (uint256 i = 0; i < length; i++) {
             _safeMint(to, _tokenIdCounter);
-            _uriStorage.setTokenURI(_tokenIdCounter, _tokenURI);
+            // _uriStorage.setTokenURI(_tokenIdCounter, _tokenURI);
+            _setTokenURI(_tokenIdCounter, _tokenURI);
             _tokenIdCounter++;
             emit LogMessage(to, _tokenIdCounter);
         }

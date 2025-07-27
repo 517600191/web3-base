@@ -1,4 +1,4 @@
-//npx hardhat test scripts/test/NFTDao3/NFTDao3Upgrade.js
+//npx hardhat test scripts/test/NFTTDAO4/NFTTDAO4Upgrade.js
 
 const { deployments, upgrades, ethers } = require('hardhat');
 const fs = require('fs');
@@ -9,7 +9,7 @@ const {
     loadFixture,
 } = require("@nomicfoundation/hardhat-toolbox/network-helpers");
 
-describe('NFTDao3Upgrade Test', async function () {
+describe('NFTTDAO4Upgrade Test', async function () {
     //不需要清数据用
     beforeEach(async () => {
 
@@ -18,28 +18,28 @@ describe('NFTDao3Upgrade Test', async function () {
     //需要清数据用 await loadFixture(init)
     const init = async () => {
         const [account1, account2] = await ethers.getSigners();
-        var storePath = await path.resolve(__dirname, './.cache/NFTDao3Test.json');
+        var storePath = await path.resolve(__dirname, './.cache/NFTTDAO4Test.json');
         var _owner = account1.address;
 
         // 获取合约的工厂实例，用于部署合约
-        const NFTTDAO3 = await ethers.getContractFactory("NFTTDAO3");
+        const NFTTDAO4 = await ethers.getContractFactory("NFTTDAO4");
 
         // 通过代理部署合约 
-        const NFTTDAO3Proxy = await upgrades.deployProxy(NFTTDAO3, ["NFTTDAO3", "NFTTDAO3S", _owner], {
+        const NFTTDAO4Proxy = await upgrades.deployProxy(NFTTDAO4, ["NFTTDAO4", "NFTTDAO4S", _owner], {
             initializer: 'initialize',
         });
-        await NFTTDAO3Proxy.waitForDeployment();
-        const proxyAddress = await NFTTDAO3Proxy.getAddress();
+        await NFTTDAO4Proxy.waitForDeployment();
+        const proxyAddress = await NFTTDAO4Proxy.getAddress();
         console.log("代理合约地址：", proxyAddress);
         const upgradeAddress = await upgrades.erc1967.getImplementationAddress(proxyAddress);
         console.log("实现合约地址：", upgradeAddress);
-        console.log(await NFTTDAO3Proxy.name(), await NFTTDAO3Proxy.symbol());
+        console.log(await NFTTDAO4Proxy.name(), await NFTTDAO4Proxy.symbol());
 
         // 存储合约信息
         await fs.writeFileSync(storePath, JSON.stringify({
             proxyAddress,
             upgradeAddress,
-            abi: NFTTDAO3.interface.format("json"),
+            abi: NFTTDAO4.interface.format("json"),
         }))
 
         // const storeData = await fs.readFileSync(storePath);
@@ -47,10 +47,10 @@ describe('NFTDao3Upgrade Test', async function () {
         // console.log(JSON.parse(storeData));
 
         //拿到升级合约
-        const NFTTDAO3Upgrade = await ethers.getContractFactory("NFTTDAO3V2");
+        const NFTTDAO4Upgrade = await ethers.getContractFactory("NFTTDAO4V2");
 
         //升级代理合约
-        const NFTActionUpgradeProxy = await upgrades.upgradeProxy(proxyAddress, NFTTDAO3Upgrade);
+        const NFTActionUpgradeProxy = await upgrades.upgradeProxy(proxyAddress, NFTTDAO4Upgrade);
         await NFTActionUpgradeProxy.waitForDeployment();
         const upgradeAddress2 = await upgrades.erc1967.getImplementationAddress(proxyAddress);
         console.log("代理合约地址：", proxyAddress);
@@ -63,7 +63,7 @@ describe('NFTDao3Upgrade Test', async function () {
         await fs.writeFileSync(storePath, JSON.stringify({
             proxyAddress,
             upgradeAddress: upgradeAddress2,
-            abi: NFTTDAO3Upgrade.interface.format("json"),
+            abi: NFTTDAO4Upgrade.interface.format("json"),
         }))
 
         return { account1, account2, NFTActionUpgradeProxy, proxyAddress };
@@ -73,9 +73,9 @@ describe('NFTDao3Upgrade Test', async function () {
         var { account1, account2, NFTActionUpgradeProxy, proxyAddress } = await loadFixture(init);
 
         // 测试 mint
-        const tx1 = await NFTActionUpgradeProxy.connect(account1).safeMint(account1.address, "./NFTTDAO3.json");
+        const tx1 = await NFTActionUpgradeProxy.connect(account1).safeMint(account1.address, "https://ipfs.io/ipfs/bafkreihewruw5gpqii6lfia5f3blb6kjwwitsct2xpy2ldj5g4kf3mdqa4");
         await tx1.wait();
-        const tx2 = await NFTActionUpgradeProxy.connect(account1).safeBatchMint(account1.address, 10, "./NFTTDAO3.json");
+        const tx2 = await NFTActionUpgradeProxy.connect(account1).safeBatchMint(account1.address, 10, "https://ipfs.io/ipfs/bafkreihewruw5gpqii6lfia5f3blb6kjwwitsct2xpy2ldj5g4kf3mdqa4");
         await tx2.wait();
         console.log(
             "测试 mint",
@@ -107,5 +107,11 @@ describe('NFTDao3Upgrade Test', async function () {
             await NFTActionUpgradeProxy.getNFTsByOwner(proxyAddress),
             await NFTActionUpgradeProxy.getAllMintedNFTs(),
         );
+
+        // 等待 2 个区块确认
+        await time.advanceBlock(2);
+
+        const tx7 = await NFTActionUpgradeProxy.connect(account1).tokenURI(11n);
+        console.log(111, tx7, 222);
     });
 })

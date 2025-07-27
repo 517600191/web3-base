@@ -44,7 +44,7 @@ export default function MintNFTModal(props: any) {
     // console.log(data);
 
     try {
-      const tokenURI = './NFTTDAO2.json';
+      const tokenURI = 'https://ipfs.io/ipfs/bafkreihewruw5gpqii6lfia5f3blb6kjwwitsct2xpy2ldj5g4kf3mdqa4';
       const hash = await walletClient.writeContract({
         address: mintNFTModalData.data.address as `0x${string}`,
         abi: mintNFTModalData.data.abi,
@@ -66,7 +66,7 @@ export default function MintNFTModal(props: any) {
     // console.log(data);
 
     try {
-      const tokenURI = './NFTTDAO2.json';
+      const tokenURI = 'https://ipfs.io/ipfs/bafkreihewruw5gpqii6lfia5f3blb6kjwwitsct2xpy2ldj5g4kf3mdqa4';
       const hash = await walletClient.writeContract({
         address: mintNFTModalData.data.address as `0x${string}`,
         abi: mintNFTModalData.data.abi,
